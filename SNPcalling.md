@@ -112,3 +112,27 @@ ref_map.pl --samples samples_mapped/ -o refmap_output/ --popmap popmap.txt -T 8
 ```
 
 Outputs a .vcf file which will be used for SNP filtering
+
+## combining dataset from first and second GBS batch
+
+Repeat demultiplexing steps from first batch, do the same for second batch. 
+Then copy data for 1st and 2nd plate into one directory.
+Go into folder were demultiplexed samples are (i.e., mohua_gbs_plat1/samples and mohua_gbs_plate2/samples), then copy all into a new folder containing all data:
+
+```
+cp *fq.gz ../../mohua_gbs/samples_all/
+```
+
+
+To combine 2 samples (e.g., "1R" and "2R"):
+
+
+```
+zcat ../mohua_gbs_plate1/samples/1R.fq.gz ../mohua_gbs_plate2/samples/1R.fq.gz | gzip -c > ../mohua_gbs/samples_all/1R.fq.gz
+```
+
+```
+zcat ../mohua_gbs_plate1/samples/2R.fq.gz ../mohua_gbs_plate2/samples/2R.fq.gz | gzip -c > ../mohua_gbs/samples_all/2R.fq.gz
+```
+
+From here on follow alignment and variant calling script as done for first batch (but this time with data from both batches)
