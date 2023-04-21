@@ -111,3 +111,4 @@ Upload popmap.txt, then run ref_map.pl:
 ref_map.pl --samples samples_mapped/ -o refmap_output/ --popmap popmap.txt -T 8
 ```
 
+Outputs a .vcf file which will be used for SNP filtering
